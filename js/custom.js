@@ -12,11 +12,13 @@ $(() => {
     });
 
     request.done((msg) => {
-      alert(msg);
+      console.log(msg);
     });
 
     request.fail((jqXHR, textStatus) => {
-      alert( "Request failed: " + textStatus );
+      console.log(`Request failed: ${textStatus}`);
+
+      $('#total-issues-table').text('Coucou, je suis content ^_^');
     });
   });
 });
