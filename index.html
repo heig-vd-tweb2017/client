@@ -6,10 +6,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="TWEB 2017 - GitHub Analytics">
+    <meta name="author" content="Michela Zucca & Ludovic Delafontaine">
 
-    <title>TWEB 2017</title>
+    <title>TWEB 2017 - GitHub Analytics</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -31,83 +31,56 @@
 
 <body>
     <div class="col-lg-12">
-        
-        <h1 class="page-header">TWEB 2017 - Projet Github Analytics</h1>
-
+        <h1 class="page-header">TWEB 2017 - Github Analytics</h1>
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Analyse a GitHub repository
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Analyse a GitHub repository
                     </div>
                     <div class="panel-body">
                         <form role="form">
                             <div class="form-group input-group">
-                                <input type="text" class="form-control" placeholder="Enter the GitHub repository URL...">
+                                <input id="search-input" type="text" class="form-control" placeholder="Enter a GitHub repository URL i.e. https://github.com/{owner}/{repo}">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
+                                    <button id="search-button" class="btn btn-default" type="button">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </span>
                             </div>
                         </form>
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#home" data-toggle="tab">Home</a>
+                            <li class="active"><a href="#total-issues" data-toggle="tab">Total issues</a>
                             </li>
-                            <li><a href="#profile" data-toggle="tab">Profile</a>
+                            <li><a href="#opened-issues" data-toggle="tab">Opened issues</a>
                             </li>
-                            <li><a href="#messages" data-toggle="tab">Messages</a>
-                            </li>
-                            <li><a href="#settings" data-toggle="tab">Settings</a>
+                            <li><a href="#closed-issues" data-toggle="tab">Closed issues</a>
                             </li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane fade in active" id="home">
-                                <h4>Home Tab</h4>
-                                <div>
-                                    <p>Ici viendra le graphique</p>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>3326</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3326</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3326</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                            <div class="tab-pane fade in active" id="total-issues">
+                                <h4>Total issues</h4>
+                                <p>This tab displays the total amount of opened and closed issues on a repository.</p>
+                                <div id="total-issues-chart"></div>
+                                <div id="total-issues-table"></div>
                             </div>
-                            <div class="tab-pane fade" id="profile">
-                                <h4>Profile Tab</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <div class="tab-pane fade" id="opened-issues">
+                                <h4>Opened issues</h4>
+                                <p>This tab displays the total amount of opened issues on a repository by user.</p>
+                                <div id="opened-issues-chart"></div>
+                                <div id="opened-issues-table"></div>
                             </div>
-                            <div class="tab-pane fade" id="messages">
-                                <h4>Messages Tab</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </div>
-                            <div class="tab-pane fade" id="settings">
-                                <h4>Settings Tab</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <div class="tab-pane fade" id="closed-issues">
+                                <h4>Closed issues</h4>
+                                <p>This tab displays the total amount of closed issues on a repository by user.</p>
+                                <div id="closed-issues-chart"></div>
+                                <div id="closed-issues-table"></div>
                             </div>
                         </div>
                     </div>
-                    <!-- /.panel-body -->
                 </div>
-                <!-- /.panel -->
             </div>
         </div>
-
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel-group" id="accordion">
@@ -154,7 +127,7 @@
 
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
-    
+
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
