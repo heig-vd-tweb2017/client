@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="TWEB 2017 - GitHub Analytics">
+    <meta name="author" content="Michela Zucca & Ludovic Delafontaine">
+
+    <title>TWEB 2017 - GitHub Analytics</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <div class="col-lg-12">
+        <h1 class="page-header">TWEB 2017 - Github Analytics</h1>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Analyse a GitHub repository
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <div class="form-group input-group">
+                                <input id="search-input" type="text" class="form-control" placeholder="Enter a GitHub repository URL i.e. https://github.com/{owner}/{repo}">
+                                <span class="input-group-btn">
+                                    <button id="search-button" class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#total-issues" data-toggle="tab">Total issues</a>
+                            </li>
+                            <li><a href="#opened-issues" data-toggle="tab">Opened issues</a>
+                            </li>
+                            <li><a href="#closed-issues" data-toggle="tab">Closed issues</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="total-issues">
+                                <h4>Total issues</h4>
+                                <p>This tab displays the total amount of opened and closed issues on a repository.</p>
+                                <div id="total-issues-chart"></div>
+                                <div id="total-issues-table"></div>
+                            </div>
+                            <div class="tab-pane fade" id="opened-issues">
+                                <h4>Opened issues</h4>
+                                <p>This tab displays the total amount of opened issues on a repository by user.</p>
+                                <div id="opened-issues-chart"></div>
+                                <div id="opened-issues-table"></div>
+                            </div>
+                            <div class="tab-pane fade" id="closed-issues">
+                                <h4>Closed issues</h4>
+                                <p>This tab displays the total amount of closed issues on a repository by user.</p>
+                                <div id="closed-issues-chart"></div>
+                                <div id="closed-issues-table"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">What is this ?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Cette page permet de blablabla
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Why is this ?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Nous avons voulu créer blablabla (story telling)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">How is this ?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Détails techniques de la réalisation de cette page.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/custom.js"></script>
+
+</body>
+
+</html>
