@@ -27,6 +27,11 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- Charts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="/src/js/utils.js"></script>
+
 </head>
 
 <body>
@@ -61,13 +66,13 @@
                             <div class="tab-pane fade in active" id="total-issues">
                                 <h4>Total issues</h4>
                                 <p>This tab displays the total amount of opened and closed issues on a repository.</p>
-                                <div id="total-issues-chart"></div>
+                                <canvas class="canvasStyle" id="total-issues-chart"></canvas>
                                 <div id="total-issues-table"></div>
                             </div>
                             <div class="tab-pane fade" id="opened-issues">
                                 <h4>Opened issues</h4>
                                 <p>This tab displays the total amount of opened issues on a repository by user.</p>
-                                <div id="opened-issues-chart"></div>
+                                <canvas class="canvasStyle" id="opened-issues-chart"></canvas>
                                 <div id="opened-issues-table"></div>
                             </div>
                             <div class="tab-pane fade" id="closed-issues">
@@ -133,6 +138,12 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/custom.js"></script>
+
+
+    <!-- DatesChart -->
+    <script src="js/datesChart.js"></script>
+    <!-- UsersChart -->
+    <script src="js/usersChart.js"></script>
 
 </body>
 
