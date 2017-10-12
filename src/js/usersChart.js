@@ -1,35 +1,68 @@
-/*
- var place = ["Second", "First", "Third"];
- var color = Chart.helpers.color;
- var barChartData = {
-     labels: ["Second", "First", "Third"],
-     datasets: [{
-         label: 'Dataset 1',
-         backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-         borderColor: window.chartColors.red,
-         borderWidth: 1,
-         data: [
-             3,9,6
-         ]
-     }]
- };
+Chart.defaults.global.legend.display = false; // Permet de retirer les labels des dataset
 
+const place = ['Second', 'First', 'Third'];
 
-window.onload = function() {
-    var ctx = document.getElementById("opened-issues-chart").getContext("2d");
-    window.myBar = new Chart(ctx, {
-        type: 'bar',
-        data: barChartData,
-        options: {
-            responsive: true,
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                text: 'Chart.js Bar Chart'
-            }
-        }
-    });
+const barCharDataOpened = {
+  labels: place,
+  datasets: [{
+    backgroundColor: [orange, green, yellow],
+    borderColor: [orange, green, yellow],
+    borderWidth: 1,
+    data: [
+      ('Second', 12),
+      ('First', 17),
+      ('Third', 8),
+    ],
+  }],
+};
 
-};*/
+const barCharDataClosed = {
+  labels: place,
+  datasets: [{
+    backgroundColor: [orange, green, yellow],
+    borderColor: [orange, green, yellow],
+    borderWidth: 1,
+    data: [
+      ('Second', 25),
+      ('First', 32),
+      ('Third', 8),
+    ],
+  }],
+
+};
+
+const options = {
+  options: {
+    responsive: true,
+    legend: {
+      display: false,
+    },
+    scales: {
+      xAxes: [{
+        stacked: true,
+      }],
+      yAxes: [{
+        stacked: true,
+      }],
+
+    },
+  },
+};
+
+const configOpened = {
+  type: 'bar',
+  data: barCharDataOpened,
+  options,
+};
+
+const configClosed = {
+  type: 'bar',
+  data: barCharDataClosed,
+  options,
+};
+
+const ctxOpened = document.getElementById('opened-issues-chart').getContext('2d');
+const barOpened = new Chart(ctxOpened, configOpened);
+
+const ctxClosed = document.getElementById('closed-issues-chart').getContext('2d');
+const barClosed = new Chart(ctxClosed, configClosed);
