@@ -1,4 +1,12 @@
+
+
 $(() => {
+
+  const defaultData = [('Second', 0), ('First', 0), ('Third', 0)];
+
+  const openedIssues = new BarChart('opened-issues-chart', defaultData);
+  const closedIssues = new BarChart('closed-issues-chart', defaultData);
+
   $('#search-button').click(() => {
     const input = $('#search-input').val();
 
@@ -28,5 +36,9 @@ $(() => {
 
       $('#total-issues-table').text('Coucou, je suis content ^_^');
     });
+    const updatedDataClosed = [('Second', 0), ('First', 1), ('Third', 0)];
+
+    closedIssues.updateData(updatedDataClosed);
+
   });
 });

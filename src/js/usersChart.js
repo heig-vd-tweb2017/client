@@ -6,9 +6,12 @@ const blue = 'rgb(54, 162, 235)';
 const purple = 'rgb(153, 102, 255)';
 const grey = 'rgb(201, 203, 207)';
 
-Chart.defaults.global.legend.display = false; // Permet de retirer les labels des dataset
-
 class BarChart {
+  /**
+   * The constructor.
+   * @param {string} canvasId ID of the canvas where the graph will show.
+   * @param {array} chartData An array with the graph's data.
+   */
   constructor(canvasId, chartData) {
     this.config = {
       type: 'bar',
@@ -46,28 +49,16 @@ class BarChart {
     this.chart = new Chart(canvas, this.config);
   }
 
+  /**
+   * Refresh the graph with the new data.
+   * @param {array} newData An array with the new graph's data.
+   */
   updateData(newData) {
-    const data = {
-      labels: ['Second', 'First', 'Third'],
-      datasets: [{
-        backgroundColor: [orange, green, yellow],
-        borderColor: [orange, green, yellow],
-        borderWidth: 1,
-        scaleStartValue: 0,
-        data: newData,
-      }],
-    };
+    const { data } = this.config;
+
+    data.datasets[0].data = newData;
 
     this.chart.config.data = data;
     this.chart.update();
   }
 }
-
-const dataClosed = [('Second', 500), ('First', 653), ('Third', 143)];
-
-const chartClosed = new BarChart('closed-issues-chart', dataClosed);
-
-const updatedDataClosed = [('Second', 0), ('First', 1), ('Third', 0)];
-
-
-chartClosed.updateData(updatedDataClosed);
