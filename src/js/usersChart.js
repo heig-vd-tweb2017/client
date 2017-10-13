@@ -1,68 +1,61 @@
 Chart.defaults.global.legend.display = false; // Permet de retirer les labels des dataset
 
-const place = ['Second', 'First', 'Third'];
+class BarChart {
+  constructor(ctx, data) {
+    this.data = data;
+    this.ctx = ctx;
+    this.place = ['Second', 'First', 'Third'];
 
-const barCharDataOpened = {
-  labels: place,
-  datasets: [{
-    backgroundColor: [orange, green, yellow],
-    borderColor: [orange, green, yellow],
-    borderWidth: 1,
-    data: [
-      ('Second', 12),
-      ('First', 17),
-      ('Third', 8),
-    ],
-  }],
-};
-
-const barCharDataClosed = {
-  labels: place,
-  datasets: [{
-    backgroundColor: [orange, green, yellow],
-    borderColor: [orange, green, yellow],
-    borderWidth: 1,
-    data: [
-      ('Second', 25),
-      ('First', 32),
-      ('Third', 8),
-    ],
-  }],
-
-};
-
-const options = {
-  options: {
-    responsive: true,
-    legend: {
-      display: false,
-    },
-    scales: {
-      xAxes: [{
-        stacked: true,
+    this.barData = {
+      labels: this.place,
+      datasets: [{
+        backgroundColor: [orange, green, yellow],
+        borderColor: [orange, green, yellow],
+        borderWidth: 1,
+        scaleStartValue: 0,
+        data: this.data,
       }],
-      yAxes: [{
-        stacked: true,
-      }],
+    };
 
-    },
-  },
-};
+    this.options = {
+      options: {
+        responsive: true,
+        legend: {
+          display: false,
+        },
+        scales: {
+          xAxes: [{
+            stacked: true,
+          }],
+          yAxes: [{ 
+            stacked: true,
+            ticks: {
+              beginAtZero: true,
+            },
+          }],
+        },
+      },
+    };
 
-const configOpened = {
-  type: 'bar',
-  data: barCharDataOpened,
-  options,
-};
+    this.config = {
+      type: 'bar',
+      data: this.barData,
+      options: this.options,
+    };
 
-const configClosed = {
-  type: 'bar',
-  data: barCharDataClosed,
-  options,
-};
+    this.chart = new Chart(this.ctx, this.config);
+  }
 
-const ctxOpened = document.getElementById('opened-issues-chart').getContext('2d');
-const barOpened = new Chart(ctxOpened, configOpened);
+  updateData(newData) {
+    this.chart.data.datasets.data = newData;
+    this.chart.update();
+  }
+}
 
-const ctxClosed = document.getElementById('closed-issues-chart').getContext('2d');
-const barClosed = new Chart(ctxClosed, configClosed);
+const dataOpened = [('Second', 12), ('First', 17), ('Third', 8)];
+const dataClosed = [('Second', 8), ('First', 9), ('Third', 5)];
+
+const chartOpened = new BarChart(document.getElementById('opened-issues-chart').getContext('2d'), dataOpened);
+const chartClosed = new BarChart(document.getElementById('closed-issues-chart').getContext('2d'), dataClosed);
+
+chartClosed.updateData([('Second', 2), ('First', 3), ('Third', 1)]);
