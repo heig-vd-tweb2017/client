@@ -27,10 +27,6 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- Charts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-
 </head>
 
 <body>
@@ -66,7 +62,7 @@
                                 <h4>Total issues</h4>
                                 <p>This tab displays the total amount of opened and closed issues on a repository.</p>
                                 <canvas class="canvasStyle" id="total-issues-chart"></canvas>
-                                <div id="total-issues-table"></div>
+                                <div id="total-issues-table" ></div>
                             </div>
                             <div class="tab-pane fade" id="opened-issues">
                                 <h4>Opened issues</h4>
@@ -135,14 +131,20 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+    <!-- Chart.js -->
+    <script src="js/Chart.min.js"></script>
+
+    <!-- Temp - to delete -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+
+    <!-- Custom charts -->
+    <script src="js/custom-charts.js"></script>
+
     <!-- Custom Theme JavaScript -->
     <script src="js/custom.js"></script>
 
-
-    <!-- DatesChart -->
-    <script src="js/datesChart.js"></script>
-    <!-- UsersChart -->
-    <script src="js/usersChart.js"></script>
+    <!-- Custom Table-->
+    <script src="js/custom-table.js"></script>
 
 </body>
 
