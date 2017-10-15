@@ -6,24 +6,33 @@
 body {
   background-color: #f8f8f8;
 }
-table,th{
+
+.divTable{
+  margin-top: 50px;
+}
+
+th{
  text-align: right;
  border-bottom-style: ridge;
  padding-left: 20px;
  padding-right: 20px;
+ font-variant-caps: all-small-caps;
+ font-size:16px ;
 }
-table, td{
+
+td{
   text-align: right;
   width: auto;
   padding-left: 20px;
   padding-right: 20px;
 }
 
-tr:hover{background-color:#E9C2FF}
+tr:hover{background-color:#BEEDEA}
 
 table{
   min-width: 40%;
   max-width: 75%;
+  font-size: 14px;
 }
 
 .canvasStyle{
