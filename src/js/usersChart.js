@@ -10,27 +10,27 @@ class BarChart {
       labels: this.place,
       datasets: [{
         backgroundColor: [orange, green, yellow],
-        borderColor: [orange, green, yellow],
         borderWidth: 1,
-        scaleStartValue: 0,
         data: this.data,
+        fill: false,
       }],
     };
 
     this.options = {
       options: {
-        responsive: true,
-        legend: {
-          display: false,
-        },
+        responsive: false,
         scales: {
           xAxes: [{
-            stacked: true,
+            barPercentage: 0.5,
+            gridLines: {
+              display: false,
+            },
           }],
           yAxes: [{ 
-            stacked: true,
             ticks: {
-              beginAtZero: true,
+              min: 0,
+              max: 6500,
+              stepSize: 1,
             },
           }],
         },
@@ -53,7 +53,7 @@ class BarChart {
 }
 
 const dataOpened = [('Second', 12), ('First', 17), ('Third', 8)];
-const dataClosed = [('Second', 8), ('First', 9), ('Third', 5)];
+const dataClosed = [('Second', 8), ('First', 9), ('Third', 7)];
 
 const chartOpened = new BarChart(document.getElementById('opened-issues-chart').getContext('2d'), dataOpened);
 const chartClosed = new BarChart(document.getElementById('closed-issues-chart').getContext('2d'), dataClosed);

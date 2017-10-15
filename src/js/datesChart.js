@@ -6,7 +6,6 @@ const blue = 'rgb(54, 162, 235)';
 const purple = 'rgb(153, 102, 255)';
 const grey = 'rgb(201, 203, 207)';
 
-
 const timeFormat = 'MM/DD/YYYY HH:mm';
 
 function newDate(days) {
