@@ -1,14 +1,3 @@
-
-const myArray = new Array();
-myArray[0] = 1;
-myArray[1] = 2.218;
-myArray[2] = 33;
-myArray[3] = 114.94;
-myArray[4] = 5;
-myArray[5] = 33;
-myArray[6] = 114.980;
-myArray[7] = 5;
-
 class tableHtml {
   constructor(titleData, data, id) {
     this.titleData = titleData;
@@ -34,11 +23,10 @@ class tableHtml {
     this.myTable = `<table>${this.title}`;
 
     // Constructions des lignes
-    for (let i = 0; i < this.data.length; i++) {
-      this.myTable += `<tr><td>Number ${i} is:</td>`;
-      this.data[i] = this.data[i].toFixed(3);
-      this.myTable += `<td>${this.data[i]}</td>`;
-      this.myTable += `<td>${this.data[i]}</td></tr>`;
+    for (let i = 0; i < this.data[0].length; i++) {
+      this.myTable += `<tr><td>${this.data[0][i]}</td>`;
+      this.myTable += `<td>${this.data[1][i]}</td>`;
+      this.myTable += `<td>${this.data[2][i]}</td></tr>`;
     }
     // Construction fin de tableau
     this.myTable += '</table>';
@@ -47,5 +35,30 @@ class tableHtml {
   }
 }
 
+// Test jeux de données fictifs
 const totalTitle = ['Date', 'Issues Opened', 'Issues Closed'];
+const myArray = new Array(3, 3);
+myArray[0] = ['10 oct 2017', '2 octobre 2017', '13 septembre 2017', '4 septembre 2017', '5 aout 2017', '16 juillet 2017', '12 juillet 2017', '8 juillet 2017'];
+myArray[1] = [1, 2.218, 33, 114, 5, 33, 114, 5];
+myArray[2] = [3, 5, 87, 13, 546, 2, 62, 91];
 const tableTotal = new tableHtml(totalTitle, myArray, 'total-issues-table');
+
+const openedTitle = ['Position', 'Name', 'Issues Oppened'];
+const openedArray = new Array(3, 3);
+openedArray[0] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+openedArray[1] = ['Jean', 'Pierre', 'Loanne', 'Julie', 'Marc', 'Jack', 'Lucie', 'Pascal', 'Josh', 'Marie'];
+openedArray[2] = [85, 70, 65, 50, 46, 35, 24, 20, 19,5];
+const tableOpened = new tableHtml(openedTitle, openedArray, 'opened-issues-table');
+
+const closedTitle = ['Position', 'Name', 'Issues Closed'];
+const closedArray = new Array(3, 3);
+closedArray[0] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+closedArray[1] = ['Jean', 'Pierre', 'Loanne', 'Julie', 'Marc', 'Jack', 'Lucie', 'Pascal', 'Josh', 'Marie'];
+closedArray[2] = [85, 70, 65, 50, 46, 35, 24, 20, 19,5];
+const tableClosed = new tableHtml(closedTitle, closedArray, 'closed-issues-table');
+
+const testUpdate = new Array(3, 3);
+testUpdate[0] = ['10 oct 2017', '2 octobre 2017', '13 septembre 2017', '4 septembre 2017', '5 aout 2017', '16 juillet 2017', '12 juillet 2017', '8 juillet 2017'];
+testUpdate[1] = [1, 2, 3, 4, 5, 6, 7, 8];
+testUpdate[2] = [3, 5, 87, 13, 546, 2, 62, 91];
+tableTotal.setData(testUpdate);

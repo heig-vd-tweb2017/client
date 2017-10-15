@@ -9,17 +9,21 @@ body {
 table,th{
  text-align: right;
  border-bottom-style: ridge;
+ padding-left: 20px;
+ padding-right: 20px;
 }
 table, td{
   text-align: right;
+  width: auto;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 tr:hover{background-color:#E9C2FF}
 
 table{
-  width: 75%;
-  margin-left: auto;
-  margin-right: auto;
+  min-width: 40%;
+  max-width: 75%;
 }
 
 .canvasStyle{
