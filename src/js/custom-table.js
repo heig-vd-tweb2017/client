@@ -9,8 +9,6 @@ myArray[5] = 33;
 myArray[6] = 114.980;
 myArray[7] = 5;
 
-ment.getElementById('total-issues-table').innerHTML = myTable;
-
 class tableHtml {
   constructor(titleData, data, id) {
     this.titleData = titleData;
