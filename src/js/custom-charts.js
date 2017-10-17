@@ -11,6 +11,8 @@ const grey = 'rgb(201, 203, 207)';
 
 class LineChart {
   constructor(canvasId, graphLabels, openedIssues, closedIssues) {
+    this.labels = [];
+
     this.config = {
       type: 'line',
       data: {
@@ -33,6 +35,12 @@ class LineChart {
         title: {
           text: 'Total issues opened and closed',
         },
+        showLines: true,
+        elements: {
+          line: {
+            tension: 0, // disables bezier curves
+          },
+        },
       },
     };
 
@@ -41,15 +49,26 @@ class LineChart {
     this.chart = new Chart(canvas, this.config);
   }
 
-  updateData(newLabels, newOpenedIssues, newClosedIssues) {
+  updateOpenedIssues(newLabels, newData) {
     const { data } = this.config;
 
-    data.labels = newLabels;
-    data.datasets[0].data = newOpenedIssues;
-    data.datasets[1].data = newClosedIssues;
+    this.labels = [...new Set([...this.labels, ...newLabels])];
+    data.labels = this.labels;
+    data.datasets[0].data = newData;
 
     this.chart.config.data = data;
-    this.chart.update();
+    this.chart.update(0);
+  }
+
+  updateClosedIssues(newLabels, newData) {
+    const { data } = this.config;
+
+    this.labels = [...new Set([...this.labels, ...newLabels])];
+    data.labels = this.labels;
+    data.datasets[1].data = newData;
+
+    this.chart.config.data = data;
+    this.chart.update(0);
   }
 }
 
@@ -57,16 +76,17 @@ class BarChart {
   /**
    * The constructor.
    * @param {string} canvasId ID of the canvas where the graph will show.
+   * @param {array} chartLabels An array with the graph's labels.
    * @param {array} chartData An array with the graph's data.
    */
-  constructor(canvasId, chartData) {
+  constructor(canvasId, chartLabels, chartData) {
     this.config = {
       type: 'bar',
       data: {
-        labels: ['Second', 'First', 'Third'],
+        labels: chartLabels,
         datasets: [{
-          backgroundColor: [orange, green, yellow],
-          borderColor: [orange, green, yellow],
+          // backgroundColor: [orange, green, yellow],
+          // borderColor: [orange, green, yellow],
           borderWidth: 1,
           scaleStartValue: 0,
           data: chartData,
@@ -98,14 +118,16 @@ class BarChart {
 
   /**
    * Refresh the graph with the new data.
+   * @param {array} newLabels An array with the new graph's labels.
    * @param {array} newData An array with the new graph's data.
    */
-  updateData(newData) {
+  update(newLabels, newData) {
     const { data } = this.config;
 
+    data.labels = newLabels;
     data.datasets[0].data = newData;
 
     this.chart.config.data = data;
-    this.chart.update();
+    this.chart.update(0);
   }
 }
