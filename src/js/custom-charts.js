@@ -10,6 +10,13 @@ const purple = 'rgb(153, 102, 255)';
 const grey = 'rgb(201, 203, 207)';
 
 class LineChart {
+  /**
+   * Generate a line chart.
+   * @param {string} canvasId The canvas ID.
+   * @param {array} graphLabels An array of labels for the graph.
+   * @param {array} openedIssues An array with the opened issues.
+   * @param {array} closedIssues An array with the closed issues.
+   */
   constructor(canvasId, graphLabels, openedIssues, closedIssues) {
     this.labels = [];
 
@@ -49,10 +56,18 @@ class LineChart {
     this.chart = new Chart(canvas, this.config);
   }
 
+  /**
+   * Update the chart.
+   */
   update() {
     this.chart.update(0);
   }
 
+  /**
+   * Refresh the graph with the new opened issues data.
+   * @param {array} newLabels An array with the new graph's labels.
+   * @param {array} newData An array with the new graph's data.
+   */
   updateOpenedIssues(newLabels, newData) {
     const { data } = this.config;
 
@@ -65,6 +80,11 @@ class LineChart {
     this.chart.update(0);
   }
 
+  /**
+   * Refresh the graph with the new closed issues data.
+   * @param {array} newLabels An array with the new graph's labels.
+   * @param {array} newData An array with the new graph's data.
+   */
   updateClosedIssues(newLabels, newData) {
     const { data } = this.config;
 

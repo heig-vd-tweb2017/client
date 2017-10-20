@@ -67,4 +67,24 @@ $(() => {
         openedIssuesGraph.update(usersLabels, usersData);
       });
   });
+
+  // Test jeux de données fictifs
+  const cols = ['Date', 'Issues Opened', 'Date', 'Issues Closed'];
+
+  const rows = [];
+  rows[0] = ['10 oct 2017', 1, '2 octobre 2017', 2.218];
+  rows[1] = ['10 oct 2017', 1, '2 octobre 2017', 2.218];
+  rows[2] = ['10 oct 2017', 1, '2 octobre 2017', 2.218];
+  rows[3] = ['10 oct 2017', 1, '2 octobre 2017', 2.218];
+  rows[4] = ['10 oct 2017', 1, '2 octobre 2017', 2.218];
+
+  const tableTotal = new Table('total-issues-table', cols, rows);
+
+  rows[0] = ['12017', 1, '2 octobre 2017', 2.218];
+  rows[1] = ['10ct 2017', 1, '2 octobre 2017', 2.218];
+  rows[2] = ['10 oct 2017', 1, '2 octobre 2017', 2.218];
+  rows[3] = ['10 oc017', 1, '2 octobre 17', 2.218];
+  rows[4] = ['10 t 2017', 1, '2 octobre 2017', 2.218];
+
+  tableTotal.setBody(rows);
 });
