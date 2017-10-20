@@ -49,12 +49,17 @@ class LineChart {
     this.chart = new Chart(canvas, this.config);
   }
 
+  update() {
+    this.chart.update(0);
+  }
+
   updateOpenedIssues(newLabels, newData) {
     const { data } = this.config;
 
     this.labels = [...new Set([...this.labels, ...newLabels])];
     data.labels = this.labels;
     data.datasets[0].data = newData;
+    data.datasets[1].data = data.datasets[1].data;
 
     this.chart.config.data = data;
     this.chart.update(0);
@@ -65,6 +70,7 @@ class LineChart {
 
     this.labels = [...new Set([...this.labels, ...newLabels])];
     data.labels = this.labels;
+    data.datasets[0].data = data.datasets[0].data;
     data.datasets[1].data = newData;
 
     this.chart.config.data = data;
