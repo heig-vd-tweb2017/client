@@ -1,21 +1,20 @@
 /* eslint no-undef: "error" */
-/* global LineChart BarChart oboe */
+/* global LineChart BarChart Table oboe */
 
 $(() => {
   const openedIssuesGraph = new BarChart('opened-issues-chart', [], []);
   const closedIssuesGraph = new BarChart('closed-issues-chart', [], []);
   const allIssuesGraph = new LineChart('total-issues-chart', [], [], []);
 
-  const tableTotal = new Table('total-issues-table', ['Date', 'Issues Opened', 'Date', 'Issues Closed'], []);
-  const rowsOpened = [];
-  const tableOpened = new Table('opened-issues-table', ['User', 'Issues Opened'], []);
-  const tableClosed = new Table('closed-issues-table', ['User', 'Issues Closed'], []);
+  const totalIssuesTable = new Table('total-issues-table', ['Date', '# issues opened', '# issues closed'], []);
+  const openedIssuesTable = new Table('opened-issues-table', ['User', '# issues opened'], []);
+  const closedIssuesTable = new Table('closed-issues-table', ['User', '# issues closed'], []);
 
   const url = 'http://localhost:5050'; // 'https://evening-garden-52901.herokuapp.com';
   $('#search-button').click(() => {
     const input = $('#search-input').val();
 
-    const request = input.replace('https://github.com/', '');
+    const request = input.replace('https', 'http').replace('http://github.com/', '');
 
     const infos = request.split('/');
 
@@ -36,15 +35,18 @@ $(() => {
           });
         });
 
-        allIssuesGraph.updateClosedIssues(datesLabels, datesData);
+        allIssuesGraph.updateOpenedIssues(datesLabels, datesData);
+        totalIssuesTable.setBody([]);
       })
       .node('users', (element) => {
         const users = new Map(element);
 
-        const usersLabels = Array.from(users.keys());
-        const usersData = Array.from(users.values());
+        const usersGraphLabels = Array.from(users.keys());
+        const usersGraphData = Array.from(users.values());
+        const usersTableRows = Array.from(users);
 
-        closedIssuesGraph.update(usersLabels, usersData);
+        openedIssuesGraph.update(usersGraphLabels, usersGraphData);
+        openedIssuesTable.setBody(usersTableRows);
       });
 
     oboe(`${url}/api/closed-issues/${owner}/${repo}`)
@@ -61,34 +63,18 @@ $(() => {
           });
         });
 
-        allIssuesGraph.updateOpenedIssues(datesLabels, datesData);
+        allIssuesGraph.updateClosedIssues(datesLabels, datesData);
+        totalIssuesTable.setBody([]);
       })
       .node('users', (element) => {
         const users = new Map(element);
 
-        const usersLabels = Array.from(users.keys());
-        const usersData = Array.from(users.values());
+        const usersGraphLabels = Array.from(users.keys());
+        const usersGraphData = Array.from(users.values());
+        const usersTableRows = Array.from(users);
 
-        
-        for (let index = 0; index < usersLabels.length; index++) {
-          const user = usersLabels[index];
-          const data = usersData[index];
-          rowsOpened[index] = [user, data];
-        }
-
-        openedIssuesGraph.update(usersLabels, usersData);
-        tableOpened.setBody(rowsOpened);
+        closedIssuesGraph.update(usersGraphLabels, usersGraphData);
+        closedIssuesTable.setBody(usersTableRows);
       });
   });
-
-  // Test jeux de données fictifs
-
-  const rows = [];
-  rows[0] = ['10 oct 2017', 1, '2 octobre 2017', 2.218];
-  rows[1] = ['10 oct 2017', 1, '2 octobre 2017', 2.218];
-  rows[2] = ['10 oct 2017', 1, '2 octobre 2017', 2.218];
-  rows[3] = ['10 oct 2017', 1, '2 octobre 2017', 2.218];
-  rows[4] = ['10 oct 2017', 1, '2 octobre 2017', 2.218];
-
-  tableTotal.setBody(rows);
 });
