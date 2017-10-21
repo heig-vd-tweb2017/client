@@ -10,7 +10,7 @@ const purple = 'rgb(153, 102, 255)';
 const grey = 'rgb(201, 203, 207)';
 const gold = 'rgb(255, 255 ,0)';
 const silver = 'rgb(192, 192, 192)';
-const bronze = 'rgb(210, 105, 30)';
+const bronze = 'rgb(205, 127, 50)';
 
 class LineChart {
   /**
