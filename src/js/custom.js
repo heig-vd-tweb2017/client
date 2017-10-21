@@ -9,7 +9,7 @@ $(() => {
   const totalIssuesTable = new Table('total-issues-table', ['Date', '# issues opened', '# issues closed'], []);
   const openedIssuesTable = new Table('opened-issues-table', ['User', '# issues opened'], []);
   const closedIssuesTable = new Table('closed-issues-table', ['User', '# issues closed'], []);
-  
+
 
   const url = 'http://localhost:5050'; // 'https://evening-garden-52901.herokuapp.com';
   $('#search-button').click(() => {
@@ -36,9 +36,9 @@ $(() => {
             y: value,
           });
           if (!tableTotalRows.has(key)) {
-            tableTotalRows.set(key, [key, value, 0]); 
+            tableTotalRows.set(key, [key, value, 0]);
           } else {
-            tableTotalRows.set(key, [key, value, tableTotalRows.get(key)[2] ]);
+            tableTotalRows.set(key, [key, value, tableTotalRows.get(key)[2]]);
           }
         });
 
@@ -49,12 +49,12 @@ $(() => {
       .node('users', (element) => {
         const users = new Map(element);
 
-        const usersGraphLabels = Array.from(users.keys());
-        const usersGraphData = Array.from(users.values());
-        const usersTableRows = Array.from(users);
+        //  const usersGraphLabels = Array.from(users.keys());
+        //        const usersGraphData = Array.from(users.values());
+        const usersTableRows = Array.from(users).sort((a, b) => b[1] - a[1]);
 
-        openedIssuesGraph.update(usersGraphLabels, usersGraphData);
-        openedIssuesTable.setBody(usersTableRows.sort((a, b) => b[1] - a[1]));
+        openedIssuesGraph.update([usersTableRows[0][0], usersTableRows[1][0], usersTableRows[2][0]], [usersTableRows[0][1], usersTableRows[1][1], usersTableRows[2][1]]);
+        openedIssuesTable.setBody(usersTableRows);
       });
 
     oboe(`${url}/api/closed-issues/${owner}/${repo}`)
@@ -77,19 +77,17 @@ $(() => {
         });
 
         allIssuesGraph.updateClosedIssues(datesLabels, datesData);
-
-
         totalIssuesTable.setBody(Array.from(tableTotalRows.values()));
       })
       .node('users', (element) => {
         const users = new Map(element);
 
-        const usersGraphLabels = Array.from(users.keys());
-        const usersGraphData = Array.from(users.values());
-        const usersTableRows = Array.from(users);
+        //  const usersGraphLabels = Array.from(users.keys());
+        // const usersGraphData = Array.from(users.values());
+        const usersTableRows = Array.from(users).sort((a, b) => b[1] - a[1]);
 
-        closedIssuesGraph.update(usersGraphLabels, usersGraphData);
-        closedIssuesTable.setBody(usersTableRows.sort((a, b) => b[1] - a[1]));
+        closedIssuesGraph.update([usersTableRows[0][0], usersTableRows[1][0], usersTableRows[2][0]], [usersTableRows[0][1], usersTableRows[1][1], usersTableRows[2][1]]);
+        closedIssuesTable.setBody(usersTableRows);
       });
   });
   document.getElementById('search-button').disabled = false;
