@@ -8,6 +8,9 @@ const green = 'rgb(75, 192, 192)';
 const blue = 'rgb(54, 162, 235)';
 const purple = 'rgb(153, 102, 255)';
 const grey = 'rgb(201, 203, 207)';
+const gold = 'rgb(255, 255 ,0)';
+const silver = 'rgb(192, 192, 192)';
+const bronze = 'rgb(210, 105, 30)';
 
 class LineChart {
   /**
@@ -111,8 +114,7 @@ class BarChart {
       data: {
         labels: chartLabels,
         datasets: [{
-          // backgroundColor: [orange, green, yellow],
-          // borderColor: [orange, green, yellow],
+          backgroundColor: [silver, gold, bronze],
           borderWidth: 1,
           scaleStartValue: 0,
           data: chartData,
@@ -152,7 +154,6 @@ class BarChart {
 
     data.labels = newLabels;
     data.datasets[0].data = newData;
-    data.datasets[0].backgroundColor = orange;
 
     this.chart.config.data = data;
     this.chart.update(0);
