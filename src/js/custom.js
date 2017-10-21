@@ -53,7 +53,7 @@ $(() => {
         //        const usersGraphData = Array.from(users.values());
         const usersTableRows = Array.from(users).sort((a, b) => b[1] - a[1]);
 
-        openedIssuesGraph.update([usersTableRows[0][0], usersTableRows[1][0], usersTableRows[2][0]], [usersTableRows[0][1], usersTableRows[1][1], usersTableRows[2][1]]);
+        openedIssuesGraph.update([usersTableRows[1][0], usersTableRows[0][0], usersTableRows[2][0]], [ usersTableRows[1][1], usersTableRows[0][1], usersTableRows[2][1]]);
         openedIssuesTable.setBody(usersTableRows);
       });
 
@@ -86,7 +86,7 @@ $(() => {
         // const usersGraphData = Array.from(users.values());
         const usersTableRows = Array.from(users).sort((a, b) => b[1] - a[1]);
 
-        closedIssuesGraph.update([usersTableRows[0][0], usersTableRows[1][0], usersTableRows[2][0]], [usersTableRows[0][1], usersTableRows[1][1], usersTableRows[2][1]]);
+        closedIssuesGraph.update([usersTableRows[1][0], usersTableRows[0][0], usersTableRows[2][0]], [usersTableRows[1][1], usersTableRows[0][1], usersTableRows[2][1]]);
         closedIssuesTable.setBody(usersTableRows);
       });
   });
