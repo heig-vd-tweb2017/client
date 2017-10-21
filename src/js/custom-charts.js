@@ -152,6 +152,7 @@ class BarChart {
 
     data.labels = newLabels;
     data.datasets[0].data = newData;
+    data.datasets[0].backgroundColor = orange;
 
     this.chart.config.data = data;
     this.chart.update(0);

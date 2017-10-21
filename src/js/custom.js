@@ -30,7 +30,7 @@ $(() => {
 
         dates.forEach((value, key) => {
           datesData.push({
-            x: key,
+            x: `new newDateString(${key})`,
             y: value,
           });
         });
@@ -58,7 +58,7 @@ $(() => {
 
         dates.forEach((value, key) => {
           datesData.push({
-            x: key,
+            x: `new newDateString(${key})`,
             y: value,
           });
         });
