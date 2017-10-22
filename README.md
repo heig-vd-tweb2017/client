@@ -1,17 +1,17 @@
-# Project -Github Analytics
-This project is conducted for the course "TWEB-2017, at HEIG-VD.
+# Project - Github Analytics
+This project is conducted for the course "TWEB-2017", at HEIG-VD, Switzerland.
 
 * Teacher: Olivier Liechti.
 * Authors: Ludovic Delafontaine & Michela Zucca.
 
 ## What is this
-This project proposes a repo github analyses, especially on issues management.
+This project proposes to analyze a GitHub repository, especially on issues management.
 	
-* Time analysis of open and closed issues.
+* Time analysis of opened and closed issues.
 * Enhancement of the three most active users on closing issues.
 * Enhancement of the three most active users on opening isusses.
 	
-The trhee aspects are represented throught graphs and tables.
+The three aspects are represented throught graphics and tables.
 	
 The information about the users is deliberately hidden in parts to avoid any competition. The only objective is mutal help and encouragement.
 	
@@ -29,37 +29,40 @@ We think that issues should be opened. This proves the activity and contininous 
 For this project, we used several librairies and technologies.
  
 Client side:
-* <a href="https://startbootstrap.com/template-overviews/sb-admin-2/">SB Admin 2</a> for the Bootstrap template.
-* <a href="http://www.chartjs.org/">Chart.js</a> to display the infomations with graphics.
-* <a href="http://oboejs.com/">Oboe.js</a> to retreive data from the server and display them as soon as new data are available.
+* [SB Admin 2](https://startbootstrap.com/template-overviews/sb-admin-2/) for the Bootstrap template.
+* [Chart.js](http://www.chartjs.org/) to display the infomations with graphics.
+* [Oboe.js](http://oboejs.com/) to retreive data from the server and display them as soon as new data are available.
 
 Server side:
-* <a href="https://nodejs.org/">Node.js</a> for the server runtime engine.</li>
-* <a href="http://expressjs.com/">Express</a> for the WEB server.</li>
-* <a href="https://developer.github.com/v3/">GitHub API</a> to get the data from GitHub.</li>
-* <a href="https://github.com/visionmedia/superagent">SuperAgent</a> to query GitHub's API easily.</li>
-* <a href="https://mochajs.org/">Mocha</a> for the unit tests.</li>
-* <a href="http://chaijs.com/">Chai</a> as an assertion library used with Mocha</li>
-
+* [Node.js](https://nodejs.org/) for the server runtime engine.
+* [Express](http://expressjs.com/) for the WEB server.
+* [GitHub API](https://developer.github.com/v3/) to get the data from GitHub.
+* [SuperAgent](https://github.com/visionmedia/superagent) to query GitHub's API easily.
+* [Mocha](https://mochajs.org/) for the unit tests.
+* [Chai](http://chaijs.com/) as an assertion library used with Mocha
 
 On both side:
-* <a href="https://eslint.org/">ESLint</a> for quality code control.
+* [ESLint](https://eslint.org/) for quality code control.
 
-You can find all the sources for this project <a href="https://github.com/heig-vd-tweb2017">here</a> as everything is open source !
+## Live testing
+You can test the entire application [here](https://heig-vd-tweb2017.github.io/client/). Feel free to test it !
 
-# Client
+## Client's aspects
 The client side is the interface with the user.
 
 The user is prompted to enter the name of a github repo to analyze and start the analysis. The results are presented in the form of tables and graphs updated as the analysis progresses.
 
-## Sample result
+### Sample result
 * Time analysis
 
-![alt tag](https://github.com/heig-vd-tweb2017/client/blob/master/images/totalIssues.PNG)
+![](https://github.com/heig-vd-tweb2017/client/blob/master/images/totalIssues.PNG)
 
 * Best users for opened issues
 
-![alt tag](https://github.com/heig-vd-tweb2017/client/blob/master/images/openedIssue.PNG)
+![](https://github.com/heig-vd-tweb2017/client/blob/master/images/openedIssue.PNG)
 
-## Deployment
+### Deployment
+You only need to deploy the `src` directory on a WEB server. You might need to edit the file `src/js/custom.js` and edit the `url` constant to match your API's URL.
 
+## Server's aspects
+For server's aspects, we encourage you to visit the associated repository [here](https://github.com/heig-vd-tweb2017/server).

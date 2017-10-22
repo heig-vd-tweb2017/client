@@ -2,6 +2,30 @@
 /* global LineChart BarChart Table oboe */
 
 $(() => {
+  // Define the API's URL
+  const url = 'http://localhost:5050'; // 'https://evening-garden-52901.herokuapp.com';
+
+  // UI
+  const searchButton = document.getElementById('search-button');
+  const alertMessage = document.getElementById('alert');
+
+  // Functions
+  function enableButton(nbRequests) {
+    if (nbRequests - 1 <= 0) {
+      searchButton.disabled = false;
+    }
+  }
+
+  function error(nbRequests) {
+    if (nbRequests <= 0) {
+      const alert = '<div class="alert alert-danger">A problem encoured. Please try again later.</div>';
+
+      alertMessage.innerHTML = alert;
+
+      searchButton.disabled = false;
+    }
+  }
+
   // Create all the objects
   const allIssuesGraph = new LineChart('total-issues-chart', [], [], []);
   const labelKeyOpened = '# Total issues opened';
@@ -14,10 +38,16 @@ $(() => {
   const closedIssuesGraph = new BarChart('closed-issues-chart', [], []);
   const closedIssuesTable = new Table('closed-issues-table', ['User', '# issues closed'], []);
 
-  // Define the API's URL
-  const url = 'http://localhost:5050'; // 'https://evening-garden-52901.herokuapp.com';
-
   $('#search-button').click(() => {
+    // Number of asynchronous requests
+    let nbRequests = 2;
+
+    // Reset the alert message
+    document.getElementById('alert').innerHTML = '';
+
+    // Disable the button until the end
+    searchButton.disabled = true;
+
     // Reset the graphs and tables
     allIssuesGraph.reset();
     allIssuesTable.reset();
@@ -52,9 +82,10 @@ $(() => {
 
         dates.forEach((value, key) => {
           datesData.push({
-            x: `new newDateString(${key})`,
+            t: key,
             y: value,
           });
+
           mapTotalRows.set(labelKeyOpened, mapTotalRows.get(labelKeyOpened) + value);
         });
 
@@ -86,6 +117,16 @@ $(() => {
 
         openedIssuesGraph.update(bestUser, bestIssues);
         openedIssuesTable.setBody(usersTableRows.slice(0, max));
+      })
+      .done(() => {
+        nbRequests -= 1;
+
+        enableButton(nbRequests);
+      })
+      .fail(() => {
+        nbRequests -= 1;
+
+        error(nbRequests);
       });
 
     // Get closed issues
@@ -98,7 +139,7 @@ $(() => {
 
         dates.forEach((value, key) => {
           datesData.push({
-            x: `new newDateString(${key})`,
+            t: key,
             y: value,
           });
           mapTotalRows.set(labelKeyClosed, mapTotalRows.get(labelKeyClosed) + value);
@@ -111,7 +152,6 @@ $(() => {
         const users = new Map(element);
 
         const usersTableRows = Array.from(users).sort((a, b) => b[1] - a[1]);
-
         const bestUser = ['no one', 'no one', 'no one'];
         const bestIssues = [0, 0, 0];
         const size = usersTableRows.length;
@@ -133,6 +173,16 @@ $(() => {
 
         closedIssuesGraph.update(bestUser, bestIssues);
         closedIssuesTable.setBody(usersTableRows.slice(0, max));
+      })
+      .done(() => {
+        nbRequests -= 1;
+
+        enableButton(nbRequests);
+      })
+      .fail(() => {
+        nbRequests -= 1;
+
+        error(nbRequests);
       });
   });
 });
