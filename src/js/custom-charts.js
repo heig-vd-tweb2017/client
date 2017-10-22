@@ -43,7 +43,7 @@ class LineChart {
         legend: {
           display: true,
           reverse: true,
-          position: 'right',
+          position: 'top',
         },
         responsive: true,
         showLines: true,

@@ -2,6 +2,10 @@
 /* global LineChart BarChart Table oboe */
 
 $(() => {
+  // Define the API's URL
+  const url = 'http://localhost:5050'; // 'https://evening-garden-52901.herokuapp.com';
+
+  // UI
   const searchButton = document.getElementById('search-button');
   const alertMessage = document.getElementById('alert');
 
@@ -31,9 +35,6 @@ $(() => {
 
   const closedIssuesGraph = new BarChart('closed-issues-chart', [], []);
   const closedIssuesTable = new Table('closed-issues-table', ['User', '# issues closed'], []);
-
-  // Define the API's URL
-  const url = 'http://localhost:5050'; // 'https://evening-garden-52901.herokuapp.com';
 
   $('#search-button').click(() => {
     // Number of asynchronous requests
