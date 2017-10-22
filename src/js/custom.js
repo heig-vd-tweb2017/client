@@ -103,12 +103,12 @@ $(() => {
         const max = Math.min(15, size);
 
         if (size > 0) {
-          bestUser[0] = usersTableRows[1][0];
-          bestIssues[0] = usersTableRows[1][1];
+          bestUser[1] = usersTableRows[1][0];
+          bestIssues[1] = usersTableRows[1][1];
         }
         if (size > 1) {
-          bestUser[1] = usersTableRows[0][0];
-          bestIssues[1] = usersTableRows[0][1];
+          bestUser[0] = usersTableRows[0][0];
+          bestIssues[0] = usersTableRows[0][1];
         }
         if (size > 2) {
           bestUser[2] = usersTableRows[2][0];
@@ -159,12 +159,12 @@ $(() => {
        
         
         if (size > 0) {
-          bestUser[0] = usersTableRows[1][0];
-          bestIssues[0] = usersTableRows[1][1];
+          bestUser[1] = usersTableRows[1][0];
+          bestIssues[1] = usersTableRows[1][1];
         }
         if (size > 1) {
-          bestUser[1] = usersTableRows[0][0];
-          bestIssues[1] = usersTableRows[0][1];
+          bestUser[0] = usersTableRows[0][0];
+          bestIssues[0] = usersTableRows[0][1];
         }
         if (size > 2) {
           bestUser[2] = usersTableRows[2][0];
