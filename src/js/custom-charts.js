@@ -2,12 +2,7 @@
 /* global Chart: true */
 
 const red = 'rgb(255, 99, 132)';
-const orange = 'rgb(255, 159, 64)';
-const yellow = 'rgb(255, 205, 86)';
-const green = 'rgb(75, 192, 192)';
 const blue = 'rgb(54, 162, 235)';
-const purple = 'rgb(153, 102, 255)';
-const grey = 'rgb(201, 203, 207)';
 const gold = 'rgb(255, 255 ,0)';
 const silver = 'rgb(192, 192, 192)';
 const bronze = 'rgb(205, 127, 50)';
@@ -60,10 +55,12 @@ class LineChart {
   }
 
   /**
-   * Update the chart.
+   * Reset the chart.
    */
-  update() {
-    this.chart.update(0);
+  reset() {
+    this.labels = [];
+    this.updateClosedIssues([], []);
+    this.updateOpenedIssues([], []);
   }
 
   /**
@@ -142,6 +139,13 @@ class BarChart {
     const canvas = document.getElementById(canvasId).getContext('2d');
 
     this.chart = new Chart(canvas, this.config);
+  }
+
+  /**
+   * Reset the chart.
+   */
+  reset() {
+    this.update([], []);
   }
 
   /**

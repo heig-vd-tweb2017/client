@@ -46,7 +46,7 @@ class Table {
     tableBody.innerHTML = '';
 
     let body = '';
-    
+
     // Generate the table's rows
     rows.forEach((row) => {
       body += '      <tr>';
@@ -61,5 +61,12 @@ class Table {
 
     // Insert the body in the table
     tableBody.innerHTML = body;
+  }
+
+  /**
+   * Reset the table.
+   */
+  reset() {
+    this.setBody([]);
   }
 }

@@ -2,18 +2,31 @@
 /* global LineChart BarChart Table oboe */
 
 $(() => {
-  const openedIssuesGraph = new BarChart('opened-issues-chart', [], []);
-  const closedIssuesGraph = new BarChart('closed-issues-chart', [], []);
+  // Create all the objects
   const allIssuesGraph = new LineChart('total-issues-chart', [], [], []);
+  const allIssuesTable = new Table('total-issues-table', ['Date', '# issues opened', '# issues closed'], []);
 
-  const totalIssuesTable = new Table('total-issues-table', ['Date', '# issues opened', '# issues closed'], []);
+  const openedIssuesGraph = new BarChart('opened-issues-chart', [], []);
   const openedIssuesTable = new Table('opened-issues-table', ['User', '# issues opened'], []);
+
+  const closedIssuesGraph = new BarChart('closed-issues-chart', [], []);
   const closedIssuesTable = new Table('closed-issues-table', ['User', '# issues closed'], []);
 
-
+  // Define the API's URL
   const url = 'http://localhost:5050'; // 'https://evening-garden-52901.herokuapp.com';
+
   $('#search-button').click(() => {
-    const tableTotalRows = new Map();
+    // Reset the graphs and tables
+    allIssuesGraph.reset();
+    allIssuesTable.reset();
+
+    openedIssuesGraph.reset();
+    openedIssuesTable.reset();
+
+    closedIssuesGraph.reset();
+    closedIssuesTable.reset();
+
+    // Get the informations from the repository
     const input = $('#search-input').val();
 
     const request = input.replace('https', 'http').replace('http://github.com/', '');
@@ -23,6 +36,9 @@ $(() => {
     const owner = infos[0];
     const repo = infos[1];
 
+    const tableTotalRows = new Map();
+
+    // Get opened issues
     oboe(`${url}/api/opened-issues/${owner}/${repo}`)
       .node('dates', (element) => {
         const dates = new Map(element);
@@ -44,7 +60,7 @@ $(() => {
 
         allIssuesGraph.updateOpenedIssues(datesLabels, datesData);
 
-        totalIssuesTable.setBody(Array.from(tableTotalRows.values()));
+        allIssuesTable.setBody(Array.from(tableTotalRows.values()));
       })
       .node('users', (element) => {
         const users = new Map(element);
@@ -53,10 +69,11 @@ $(() => {
         //        const usersGraphData = Array.from(users.values());
         const usersTableRows = Array.from(users).sort((a, b) => b[1] - a[1]);
 
-        openedIssuesGraph.update([usersTableRows[1][0], usersTableRows[0][0], usersTableRows[2][0]], [ usersTableRows[1][1], usersTableRows[0][1], usersTableRows[2][1]]);
+        openedIssuesGraph.update([usersTableRows[1][0], usersTableRows[0][0], usersTableRows[2][0]], [usersTableRows[1][1], usersTableRows[0][1], usersTableRows[2][1]]);
         openedIssuesTable.setBody(usersTableRows);
       });
 
+    // Get closed issues
     oboe(`${url}/api/closed-issues/${owner}/${repo}`)
       .node('dates', (element) => {
         const dates = new Map(element);
@@ -77,7 +94,7 @@ $(() => {
         });
 
         allIssuesGraph.updateClosedIssues(datesLabels, datesData);
-        totalIssuesTable.setBody(Array.from(tableTotalRows.values()));
+        allIssuesTable.setBody(Array.from(tableTotalRows.values()));
       })
       .node('users', (element) => {
         const users = new Map(element);
@@ -90,5 +107,4 @@ $(() => {
         closedIssuesTable.setBody(usersTableRows);
       });
   });
-  document.getElementById('search-button').disabled = false;
 });
