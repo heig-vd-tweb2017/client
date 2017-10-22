@@ -63,7 +63,7 @@
                                     <li>People who open issues want to see new features and stuff in the product they use.</li>
                                     <li>People who close issues fix problems and add new features to the product.</li>
                                 </ul>
-                                <p>We think that issues should be closed as much as new issues are opened. This prouves the activity and contininous integration of the product as people want to see new features and people implement them.</p>
+                                <p>We think that issues should be closed as much as new issues are opened. This proves the activity and contininous integration of the product as people want to see new features and people implement them.</p>
                             </div>
                         </div>
                     </div>
@@ -109,16 +109,16 @@
                         <i class="fa fa-bar-chart-o fa-fw"></i> Analyse a GitHub repository
                     </div>
                     <div class="panel-body">
-                        <form role="form">
-                            <div class="form-group input-group">
-                                <input id="search-input" type="text" class="form-control" placeholder="Enter a GitHub repository URL i.e. https://github.com/{owner}/{repo}" value="https://github.com/google/WebFundamentals">
-                                <span class="input-group-btn">
-                                    <button id="search-button" class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </form>
+                        <div class="form-group input-group">
+                            <input id="search-input" type="text" class="form-control" placeholder="Enter a GitHub repository URL i.e. https://github.com/{owner}/{repo}" value="https://github.com/google/WebFundamentals">
+                            <span class="input-group-btn">
+                                <button id="search-button" class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <div id="alert">
+                        </div>
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#total-issues" data-toggle="tab">Total issues</a>
                             </li>
@@ -164,6 +164,9 @@
 
     <!-- Oboe.js -->
     <script src="js/oboe-browser.min.js"></script>
+
+    <!-- Moment.js -->
+    <script src="js/moment.min.js"></script>
 
     <!-- Chart.js -->
     <script src="js/Chart.min.js"></script>

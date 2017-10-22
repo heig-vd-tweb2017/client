@@ -1,9 +1,9 @@
 /* eslint no-undef: "error" */
 /* global Chart: true */
 
-const red = 'rgb(255, 99, 132)';
-const blue = 'rgb(54, 162, 235)';
-const gold = 'rgb(255, 255 ,0)';
+const red = 'rgb(249, 42, 42)';
+const blue = 'rgb(2, 65, 252)';
+const gold = 'rgb(255, 215, 0)';
 const silver = 'rgb(192, 192, 192)';
 const bronze = 'rgb(205, 127, 50)';
 
@@ -40,12 +40,24 @@ class LineChart {
         title: {
           text: 'Total issues opened and closed',
         },
+        legend: {
+          display: true,
+          reverse: true,
+          position: 'right',
+        },
+        responsive: true,
         showLines: true,
         elements: {
           line: {
             tension: 0, // disables bezier curves
           },
         },
+        scales: {
+          xAxes: [{
+            type: 'time',
+            distribution: 'linear',
+          }],
+        }
       },
     };
 
