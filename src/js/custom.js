@@ -28,7 +28,9 @@ $(() => {
 
   // Create all the objects
   const allIssuesGraph = new LineChart('total-issues-chart', [], [], []);
-  const allIssuesTable = new Table('total-issues-table', ['Date', '# issues opened', '# issues closed'], []);
+  const labelKeyOpened = '# Total issues opened';
+  const labelKeyClosed = '# Total issues closed';
+  const allIssuesTable = new Table('total-issues-table', [labelKeyOpened, labelKeyClosed], []);
 
   const openedIssuesGraph = new BarChart('opened-issues-chart', [], []);
   const openedIssuesTable = new Table('opened-issues-table', ['User', '# issues opened'], []);
@@ -66,7 +68,9 @@ $(() => {
     const owner = infos[0];
     const repo = infos[1];
 
-    const tableTotalRows = new Map();
+    const mapTotalRows = new Map();
+    mapTotalRows.set(labelKeyOpened, 0);
+    mapTotalRows.set(labelKeyClosed, 0);
 
     // Get opened issues
     oboe(`${url}/api/opened-issues/${owner}/${repo}`)
@@ -82,15 +86,11 @@ $(() => {
             y: value,
           });
 
-          if (!tableTotalRows.has(key)) {
-            tableTotalRows.set(key, [key, value, 0]);
-          } else {
-            tableTotalRows.set(key, [key, value, tableTotalRows.get(key)[2]]);
-          }
+          mapTotalRows.set(labelKeyOpened, mapTotalRows.get(labelKeyOpened) + value);
         });
 
         allIssuesGraph.updateOpenedIssues(datesLabels, datesData);
-        allIssuesTable.setBody(Array.from(tableTotalRows.values()));
+        allIssuesTable.setBody([[mapTotalRows.get(labelKeyOpened), mapTotalRows.get(labelKeyClosed)]]);
       })
       .node('users', (element) => {
         const users = new Map(element);
@@ -101,7 +101,7 @@ $(() => {
         const bestIssues = [0, 0, 0];
         const size = usersTableRows.length;
         const max = Math.min(15, size);
-        
+
         if (size > 0) {
           bestUser[0] = usersTableRows[1][0];
           bestIssues[0] = usersTableRows[1][1];
@@ -142,15 +142,11 @@ $(() => {
             t: key,
             y: value,
           });
-          if (!tableTotalRows.has(key)) {
-            tableTotalRows.set(key, [key, 0, value]);
-          } else {
-            tableTotalRows.set(key, [key, tableTotalRows.get(key)[1], value]);
-          }
+          mapTotalRows.set(labelKeyClosed, mapTotalRows.get(labelKeyClosed) + value);
         });
 
         allIssuesGraph.updateClosedIssues(datesLabels, datesData);
-        allIssuesTable.setBody(Array.from(tableTotalRows.values()));
+        allIssuesTable.setBody([[mapTotalRows.get(labelKeyOpened), mapTotalRows.get(labelKeyClosed)]]);
       })
       .node('users', (element) => {
         const users = new Map(element);
