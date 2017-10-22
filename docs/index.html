@@ -14,6 +14,9 @@
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Template specifics CSS -->
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="css/custom.css" rel="stylesheet">
 
@@ -28,10 +31,77 @@
     <![endif]-->
 
 </head>
-
 <body>
     <div class="col-lg-12">
         <h1 class="page-header">TWEB 2017 - Github Analytics</h1>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">What is this ?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>This page allows to retreive statistics about issues for a given GitHub repository. Just enter a GitHub repository URL in the search field and let the magic begins !</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Why is this ?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>We wanted to create this tool to encourage people to improve their product by the following points:</p>
+                                <p>We think that issues are a good parameter to mesure the activity and the progress of a project.</p>
+                                <ul>
+                                    <li>People who open issues want to see new features and stuff in the product they use.</li>
+                                    <li>People who close issues fix problems and add new features to the product.</li>
+                                </ul>
+                                <p>We think that issues should be closed as much as new issues are opened. This proves the activity and contininous integration of the product as people want to see new features and people implement them.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">How is this ?</a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>For this project, we used several librairies and technologies.</p>
+                                <p>Client side:</p>
+                                <ul>
+                                    <li><a href="https://startbootstrap.com/template-overviews/sb-admin-2/">SB Admin 2</a> for the Bootstrap template.</li>
+                                    <li><a href="http://www.chartjs.org/">Chart.js</a> to display the infomations with graphics.</li>
+                                    <li><a href="http://oboejs.com/">Oboe.js</a> to retreive data from the server and display them as soon as new data are available.</li>
+                                </ul>
+                                <p>Server side:</p>
+                                <ul>
+                                    <li><a href="https://nodejs.org/">Node.js</a> for the server runtime engine.</li>
+                                    <li><a href="http://expressjs.com/">Express</a> for the WEB server.</li>
+                                    <li><a href="https://developer.github.com/v3/">GitHub API</a> to get the data from GitHub.</li>
+                                    <li><a href="https://github.com/visionmedia/superagent">SuperAgent</a> to query GitHub's API easily.</li>
+                                    <li><a href="https://mochajs.org/">Mocha</a> for the unit tests.</li>
+                                    <li><a href="http://chaijs.com/">Chai</a> as an assertion library used with Mocha</li>
+                                </ul>
+                                <p>On both side:</p>
+                                <ul>
+                                    <li><a href="https://eslint.org/">ESLint</a> for quality code control.</li>
+                                </ul>
+                                <p>You can find all the sources for this project <a href="https://github.com/heig-vd-tweb2017">here</a> as everything is open source !</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
@@ -39,16 +109,16 @@
                         <i class="fa fa-bar-chart-o fa-fw"></i> Analyse a GitHub repository
                     </div>
                     <div class="panel-body">
-                        <form role="form">
-                            <div class="form-group input-group">
-                                <input id="search-input" type="text" class="form-control" placeholder="Enter a GitHub repository URL i.e. https://github.com/{owner}/{repo}">
-                                <span class="input-group-btn">
-                                    <button id="search-button" class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </form>
+                        <div class="form-group input-group">
+                            <input id="search-input" type="text" class="form-control" placeholder="Enter a GitHub repository URL i.e. https://github.com/{owner}/{repo}" value="https://github.com/google/WebFundamentals">
+                            <span class="input-group-btn">
+                                <button id="search-button" class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <div id="alert">
+                        </div>
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#total-issues" data-toggle="tab">Total issues</a>
                             </li>
@@ -61,62 +131,23 @@
                             <div class="tab-pane fade in active" id="total-issues">
                                 <h4>Total issues</h4>
                                 <p>This tab displays the total amount of opened and closed issues on a repository.</p>
-                                <div id="total-issues-chart"></div>
-                                <div id="total-issues-table"></div>
+                                <p>The more the gap between opened and closed issues for a given day is close, the better is it !</p>
+                                <canvas class="canvasStyle" id="total-issues-chart"></canvas>
+                                <div class="tableStyle" id="total-issues-table" ></div>
                             </div>
                             <div class="tab-pane fade" id="opened-issues">
                                 <h4>Opened issues</h4>
                                 <p>This tab displays the total amount of opened issues on a repository by user.</p>
-                                <div id="opened-issues-chart"></div>
-                                <div id="opened-issues-table"></div>
+                                <p>We only show the best players in this field. Try to beat your friends to become the number one !</p>
+                                <canvas class="canvasStyle" id="opened-issues-chart"></canvas>
+                                <div class="tableStyle" id="opened-issues-table"></div>
                             </div>
                             <div class="tab-pane fade" id="closed-issues">
                                 <h4>Closed issues</h4>
                                 <p>This tab displays the total amount of closed issues on a repository by user.</p>
-                                <div id="closed-issues-chart"></div>
-                                <div id="closed-issues-table"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">What is this ?</a>
-                            </h4>
-                        </div>
-                        <div id="collapseOne" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                Cette page permet de blablabla
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Why is this ?</a>
-                            </h4>
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                Nous avons voulu créer blablabla (story telling)
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">How is this ?</a>
-                            </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                Détails techniques de la réalisation de cette page.
+                                <p>We only show the best players in this field. Try to beat your friends to become the number one !</p>
+                                <canvas class="canvasStyle" id="closed-issues-chart"></canvas>
+                                <div class="tableStyle" id="closed-issues-table"></div>
                             </div>
                         </div>
                     </div>
@@ -131,9 +162,23 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+    <!-- Oboe.js -->
+    <script src="js/oboe-browser.min.js"></script>
+
+    <!-- Moment.js -->
+    <script src="js/moment.min.js"></script>
+
+    <!-- Chart.js -->
+    <script src="js/Chart.min.js"></script>
+
+    <!-- Custom charts -->
+    <script src="js/custom-charts.js"></script>
+
+    <!-- Custom tables-->
+    <script src="js/custom-tables.js"></script>
+
     <!-- Custom Theme JavaScript -->
     <script src="js/custom.js"></script>
 
 </body>
-
 </html>
