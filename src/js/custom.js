@@ -59,18 +59,33 @@ $(() => {
         });
 
         allIssuesGraph.updateOpenedIssues(datesLabels, datesData);
-
         allIssuesTable.setBody(Array.from(tableTotalRows.values()));
       })
       .node('users', (element) => {
         const users = new Map(element);
 
-        //  const usersGraphLabels = Array.from(users.keys());
-        //        const usersGraphData = Array.from(users.values());
         const usersTableRows = Array.from(users).sort((a, b) => b[1] - a[1]);
+        
+        const bestUser = ['no one', 'no one', 'no one'];
+        const bestIssues = [0, 0, 0];
+        const size = usersTableRows.length;
+        const max = Math.min(15, size);
+        
+        if (size > 0) {
+          bestUser[0] = usersTableRows[1][0];
+          bestIssues[0] = usersTableRows[1][1];
+        }
+        if (size > 1) {
+          bestUser[1] = usersTableRows[0][0];
+          bestIssues[1] = usersTableRows[0][1];
+        }
+        if (size > 2) {
+          bestUser[2] = usersTableRows[2][0];
+          bestIssues[2] = usersTableRows[2][1];
+        }
 
-        openedIssuesGraph.update([usersTableRows[1][0], usersTableRows[0][0], usersTableRows[2][0]], [usersTableRows[1][1], usersTableRows[0][1], usersTableRows[2][1]]);
-        openedIssuesTable.setBody(usersTableRows);
+        openedIssuesGraph.update(bestUser, bestIssues);
+        openedIssuesTable.setBody(usersTableRows.slice(0, max));
       });
 
     // Get closed issues
@@ -99,12 +114,29 @@ $(() => {
       .node('users', (element) => {
         const users = new Map(element);
 
-        //  const usersGraphLabels = Array.from(users.keys());
-        // const usersGraphData = Array.from(users.values());
         const usersTableRows = Array.from(users).sort((a, b) => b[1] - a[1]);
 
-        closedIssuesGraph.update([usersTableRows[1][0], usersTableRows[0][0], usersTableRows[2][0]], [usersTableRows[1][1], usersTableRows[0][1], usersTableRows[2][1]]);
-        closedIssuesTable.setBody(usersTableRows);
+        const bestUser = ['no one', 'no one', 'no one'];
+        const bestIssues = [0, 0, 0];
+        const size = usersTableRows.length;
+        const max = Math.min(15, size);
+       
+        
+        if (size > 0) {
+          bestUser[0] = usersTableRows[1][0];
+          bestIssues[0] = usersTableRows[1][1];
+        }
+        if (size > 1) {
+          bestUser[1] = usersTableRows[0][0];
+          bestIssues[1] = usersTableRows[0][1];
+        }
+        if (size > 2) {
+          bestUser[2] = usersTableRows[2][0];
+          bestIssues[2] = usersTableRows[2][1];
+        }
+
+        closedIssuesGraph.update(bestUser, bestIssues);
+        closedIssuesTable.setBody(usersTableRows.slice(0, max));
       });
   });
 });
