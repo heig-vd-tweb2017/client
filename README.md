@@ -1,6 +1,9 @@
 # Project -Github Analytics
 This project is conducted for the course "TWEB-2017, at HEIG-VD.
 
+* Teacher: Olivier Liechti.
+* Authors: Ludovic Delafontaine & Michela Zucca.
+
 ## What is this
 This project proposes a repo github analyses, especially on issues management.
 	
