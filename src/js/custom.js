@@ -156,8 +156,8 @@ $(() => {
         const bestIssues = [0, 0, 0];
         const size = usersTableRows.length;
         const max = Math.min(15, size);
-
-
+       
+        
         if (size > 0) {
           bestUser[0] = usersTableRows[1][0];
           bestIssues[0] = usersTableRows[1][1];
