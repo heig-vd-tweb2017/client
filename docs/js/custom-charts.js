@@ -123,7 +123,7 @@ class BarChart {
       data: {
         labels: chartLabels,
         datasets: [{
-          backgroundColor: [silver, gold, bronze],
+          backgroundColor: [gold, silver, bronze],
           borderWidth: 1,
           scaleStartValue: 0,
           data: chartData,
