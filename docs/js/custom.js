@@ -3,7 +3,7 @@
 
 $(() => {
   // Define the API's URL
-  const url = 'http://localhost:5050'; // 'https://evening-garden-52901.herokuapp.com';
+  const url = 'https://evening-garden-52901.herokuapp.com';
 
   // UI
   const searchButton = document.getElementById('search-button');
