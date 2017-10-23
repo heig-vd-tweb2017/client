@@ -90,7 +90,8 @@ $(() => {
         });
 
         allIssuesGraph.updateOpenedIssues(datesLabels, datesData);
-        allIssuesTable.setBody([[mapTotalRows.get(labelKeyOpened), mapTotalRows.get(labelKeyClosed)]]);
+        allIssuesTable.setBody([[mapTotalRows.get(labelKeyOpened),
+          mapTotalRows.get(labelKeyClosed)]]);
       })
       .node('users', (element) => {
         const users = new Map(element);
@@ -146,7 +147,8 @@ $(() => {
         });
 
         allIssuesGraph.updateClosedIssues(datesLabels, datesData);
-        allIssuesTable.setBody([[mapTotalRows.get(labelKeyOpened), mapTotalRows.get(labelKeyClosed)]]);
+        allIssuesTable.setBody([[mapTotalRows.get(labelKeyOpened),
+          mapTotalRows.get(labelKeyClosed)]]);
       })
       .node('users', (element) => {
         const users = new Map(element);
@@ -156,8 +158,7 @@ $(() => {
         const bestIssues = [0, 0, 0];
         const size = usersTableRows.length;
         const max = Math.min(15, size);
-       
-        
+
         if (size > 0) {
           bestUser[1] = usersTableRows[1][0];
           bestIssues[1] = usersTableRows[1][1];
