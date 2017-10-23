@@ -52,15 +52,6 @@ The client side is the interface with the user.
 
 The user is prompted to enter the name of a github repo to analyze and start the analysis. The results are presented in the form of tables and graphs updated as the analysis progresses.
 
-### Sample result
-* Time analysis
-
-![](https://github.com/heig-vd-tweb2017/client/blob/master/images/totalIssues.PNG)
-
-* Best users for opened issues
-
-![](https://github.com/heig-vd-tweb2017/client/blob/master/images/openedIssue.PNG)
-
 ### Deployment
 You only need to deploy the `src` directory on a WEB server. You might need to edit the file `src/js/custom.js` and edit the `url` constant to match your API's URL.
 
