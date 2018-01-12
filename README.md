@@ -56,4 +56,4 @@ The user is prompted to enter the name of a github repo to analyze and start the
 You only need to deploy the `src` directory on a WEB server. You might need to edit the file `src/js/custom.js` and edit the `url` constant to match your API's URL.
 
 ## Server's aspects
-For server's aspects, we encourage you to visit the associated repository [here](https://github.com/heig-vd-tweb2017/server).
+For server's aspects, we encourage you to visit the associated repository [here](https://github.com/heig-vd-tweb2017/github-analytics-server).
