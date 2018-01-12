@@ -45,7 +45,7 @@ On both side:
 * [ESLint](https://eslint.org/) for quality code control.
 
 ## Live testing
-You can test the entire application [here](https://heig-vd-tweb2017.github.io/client/). Feel free to test it !
+You can test the entire application [here](https://heig-vd-tweb2017.github.io/github-analytics-client/). Feel free to test it !
 
 ## Client's aspects
 The client side is the interface with the user.
